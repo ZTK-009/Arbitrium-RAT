@@ -1,10 +1,16 @@
+### Disclaimer
+
+This tool was made for educational purposes only. I urge anyone who would use this tool to only use it on targets he/she is authorized to access as a remote control tool. I hold no responsibility if one used it for any unlawful activity.
+
 ### About:
 
 Arbitrium is a cross-platform is a remote access trojan (RAT), Fully UnDetectable (FUD), It allows you to control Android, Windows and Linux and doesn't require any firewall exceptions or port forwarding. It gives access to the local networks, you can use the targets as a HTTP proxy and access Router, discover local IPs and scan their ports. Includes modules like Mimikatz, new modules can easily be added. In addition, if Arbitrium is used with a DNS spoofing software is can spread autonomously between devices (#AutoSpread). Arbitrium is a project of multiple parts, the parts were built using Java, JS, C, Python, Cordova and VueJS.
 
-#### Demo: [https://youtu.be/7KlPPND2b0g](https://youtu.be/7KlPPND2b0g)
+> :information_source: `Arbitrium-CLI` will be published soon on this repository, which will allow for an easy and stable deployment and generation of clients
 
-[![Demo video](https://i.postimg.cc/TYfTGBb6/home.png)](https://youtu.be/7KlPPND2b0g)
+#### Demo: [https://streamable.com/ov78ki](https://streamable.com/ov78ki)
+
+[![Demo video](https://i.postimg.cc/TYfTGBb6/home.png)](https://streamable.com/ov78ki)
 
 
 ### Features:
