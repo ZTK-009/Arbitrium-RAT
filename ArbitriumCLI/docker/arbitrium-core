@@ -1,0 +1,20 @@
+FROM ubuntu:16.04 as arbitrium-core
+
+MAINTAINER BenChaliah <ayoub1benchaliah@gmail.com>
+
+
+USER 0
+
+
+RUN apt-get update
+RUN apt-get -y install software-properties-common expect unzip wget curl
+
+
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install -y nodejs git screen python-pip
+
+
+RUN pip install Werkzeug==1.0.1 flask==1.1.2 flask-cors==3.0.8 requests==2.23.0 PyJWT==1.7.1
+RUN mkdir /root/build_assets
+
+

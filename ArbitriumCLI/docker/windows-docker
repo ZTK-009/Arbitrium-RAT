@@ -1,0 +1,31 @@
+FROM arbitrium-core as arbitrium-windows
+
+
+ENV DEBIAN_FRONTEND noninteractive
+
+
+ENV WINEARCH   win32
+ENV WINEDEBUG  fixme-all
+ENV WINEPREFIX /root/wine
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends wget ca-certificates rar \
+ && dpkg --add-architecture i386 \
+ && echo 'deb http://dl.winehq.org/wine-builds/ubuntu/ xenial main' > /etc/apt/sources.list.d/winehq.list \
+ && wget 'https://dl.winehq.org/wine-builds/Release.key' -O- | apt-key add \
+ && apt-get update \
+ && apt-get install -y --allow-unauthenticated --no-install-recommends winehq-staging winetricks
+
+
+RUN wget "https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi" \
+ && wine msiexec /qn /i python-2.7.13.msi \
+ && rm -f python-2.7.13.msi \
+ && cd /root/wine/drive_c/Python27 \
+ && echo 'wine C:\\\\Python27\\\\python.exe "$@"' > /usr/bin/pythonwin \
+ && echo 'wine C:\\\\Python27\\\\python.exe -m pip "$@"' > /usr/bin/pipwin \
+ && chmod +x /usr/bin/pythonwin \
+ && chmod +x /usr/bin/pipwin \
+ && pipwin install pyinstaller==3.5
+
+
+COPY layouts/Windows/windows.sfx /usr/local/etc/

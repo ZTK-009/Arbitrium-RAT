@@ -1,0 +1,48 @@
+FROM arbitrium-core as arbitrium-android
+
+RUN add-apt-repository ppa:openjdk-r/ppa -y
+RUN dpkg --add-architecture i386
+RUN apt-get update
+
+RUN apt-get install -y openjdk-8-jdk
+
+
+RUN update-java-alternatives --jre-headless --set java-1.8.0-openjdk-amd64
+RUN update-alternatives --set javac /usr/lib/jvm/java-8-openjdk-amd64/bin/javac
+
+
+RUN mkdir /root/Android /root/Android/sdk /root/Android/sdk/licenses
+
+RUN wget https://dl.google.com/android/repository/tools_r25.2.3-linux.zip \
+	&& unzip tools_r25.2.3-linux.zip -d /root/Android/sdk && rm tools_r25.2.3-linux.zip
+
+
+ENV ANDROID_SDK_ROOT /root/Android/sdk
+ENV ANDROID_HOME /root/Android/sdk
+
+ENV PATH ${PATH}:/root/Android/sdk/tools:/root/Android/sdk/platform-tools:/root/Android/sdk/tools/bin
+
+RUN echo -e "\n24333f8a63b6825ea9c5514f83c2829b004d1fee" > /root/Android/sdk/licenses/android-sdk-license
+RUN sdkmanager "emulator" "platform-tools" "platforms;android-29" "build-tools;29.0.2"
+
+
+
+RUN wget https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip \
+	&& unzip android-ndk-r21e-linux-x86_64.zip -d /root/Android \
+	&& mv /root/Android/android-ndk-r21e /root/Android/ndk \
+	&& rm android-ndk-r21e-linux-x86_64.zip
+
+
+ENV PATH ${PATH}:/root/Android/ndk
+
+
+RUN wget https://services.gradle.org/distributions/gradle-6.5-all.zip \
+    && unzip -d /opt/gradle gradle-6.5-all.zip \
+    && chmod +775 /opt/gradle \
+    && rm -rf gradle-6.5-all.zip
+
+ENV PATH ${PATH}:/opt/gradle/gradle-6.5/bin
+
+RUN npm install -g cordova@10.0.0
+RUN cordova telemetry off
+

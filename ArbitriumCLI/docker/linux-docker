@@ -1,0 +1,3 @@
+FROM arbitrium-core as arbitrium-linux
+
+RUN apt install python3-pip -y && pip3 install pyinstaller==3.5
