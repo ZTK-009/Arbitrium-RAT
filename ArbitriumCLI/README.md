@@ -8,6 +8,11 @@ With few clicks the CLI will generate an undetectable ready-to-use client.
 
 - Abstract synthax encoder: at each generation this encoder will create a client with a different size and a different source code but without impacting the functionnality of the client, which will make static analysis much harder for AVs, as soon an existing client become detectable, all you have to do is generate a new client which will hold a new source code. This encoder is still experimental and there is still a lot to do.
 
+### Installation:
+```bash
+ $ pip2 install pyinquirer=1.0.3
+ $ python2.7 main.py
+```
 
 ### screenshots:
 
