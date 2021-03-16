@@ -6,6 +6,7 @@ This tool was made for educational purposes only. I urge anyone who would use th
 
 Arbitrium is a cross-platform remote access trojan (RAT), Fully UnDetectable (FUD), It allows you to control Android, Windows and Linux and doesn't require any firewall exceptions or port forwarding. It gives access to the local networks, you can use the targets as a HTTP proxy and access Router, discover local IPs and scan their ports. Includes modules like Mimikatz, new modules can easily be added. In addition, if Arbitrium is used with a DNS spoofing software is can spread autonomously between devices (#AutoSpread). Arbitrium is a multiple parts project, the parts were built using Java, JS, C, Python, Cordova and VueJS.
 
+ℹ️ default login: __admin/passwd__
 
 #### CLI-Demo: [https://streamable.com/fptp0l](https://streamable.com/fptp0l)
 #### Demo: [https://streamable.com/ov78ki](https://streamable.com/ov78ki)
@@ -17,10 +18,11 @@ Arbitrium is a cross-platform remote access trojan (RAT), Fully UnDetectable (FU
 
 ### Features:
 
-- [x] __FUD__
+- [x] __FUD/Encoders__
 
-The client uses simple tools which makes it completely undetectable, the trojan based on netcat mainly pipe TCP paquets to run the server's commands.
+With few clicks the CLI will generate an undetectable ready-to-use client.
 
+- Abstract synthax encoder: at each generation this encoder will create a client with a different size and a different source code but without impacting the functionnality of the client, which will make static analysis much harder for AVs, as soon an existing client become detectable, all you have to do is generate a new client which will hold a new source code. This encoder is still experimental and there is still a lot to do, but the tests done showed very promising results.
 
 - [x] __Firewall__
 
