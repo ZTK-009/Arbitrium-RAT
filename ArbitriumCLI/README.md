@@ -10,7 +10,7 @@ With few clicks the CLI will generate an undetectable ready-to-use client.
 
 ### Installation:
 ```bash
- $ pip2 install pyinquirer=1.0.3
+ $ pip2 install pyinquirer==1.0.3
  $ python2.7 main.py
 ```
 
